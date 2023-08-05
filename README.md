@@ -4,6 +4,10 @@ This tool helps you generate config files with variables.
 
 This makes it easier to keep your favorite settings available across different accounts, environments, or hardware. It also makes it easier to make changes to complicated configuration files (like changing colors across a customized `starship.toml`)
 
+For example, with the examples below, you can change your starship color configurations very easily, which used to be a complex and complicated process.
+
+![Starship Fast Configuration](./examples/quick-starship.png)
+
 All you have to do is create a template configuration file, filled with variables that might change depending on your preferences.
 
 Then set up an environment file for that configuration, and run the `./templatize` command.
@@ -29,11 +33,30 @@ TEMPLATE_VAR_MY_USERNAME="my_user"
 ```text
 SRC_CONFIG_PATH="~/.config/starship.template.toml"
 DST_CONFIG_PATH="~/.config/starship.toml"
+
+# Green to Red
 TEMPLATE_VAR_COLOR_1="#264653"
+TEMPLATE_VAR_TEXT_COLOR_1="#ffffff"
 TEMPLATE_VAR_COLOR_2="#2a9d8f"
+TEMPLATE_VAR_TEXT_COLOR_2="#ffffff"
 TEMPLATE_VAR_COLOR_3="#e9c46a"
+TEMPLATE_VAR_TEXT_COLOR_3="#000000"
 TEMPLATE_VAR_COLOR_4="#f4a261"
+TEMPLATE_VAR_TEXT_COLOR_4="#000000"
 TEMPLATE_VAR_COLOR_5="#e76f51"
+TEMPLATE_VAR_TEXT_COLOR_5="#ffffff"
+
+# Blues
+# TEMPLATE_VAR_COLOR_1="#03045e"
+# TEMPLATE_VAR_TEXT_COLOR_1="#ffffff"
+# TEMPLATE_VAR_COLOR_2="#0077b6"
+# TEMPLATE_VAR_TEXT_COLOR_2="#ffffff"
+# TEMPLATE_VAR_COLOR_3="#00b4d8"
+# TEMPLATE_VAR_TEXT_COLOR_3="#ffffff"
+# TEMPLATE_VAR_COLOR_4="#90e0ef"
+# TEMPLATE_VAR_TEXT_COLOR_4="#000000"
+# TEMPLATE_VAR_COLOR_5="#caf0f8"
+# TEMPLATE_VAR_TEXT_COLOR_5="#000000"
 ```
 
 ### `starship.template.toml`
@@ -41,8 +64,6 @@ TEMPLATE_VAR_COLOR_5="#e76f51"
 _Note that for starship to work, you must have a nerdfont installed, and set as the font for your terminal, and that the default Mac Terminal will not render colors properly. Try using iTerm2 and installing nerdfonts per this gist <https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e.js>_
 
 ```toml
-# Adapted from Starship Preset "Pastel Powerline" https://starship.rs/presets/#pastel-powerline
-
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
@@ -85,9 +106,9 @@ success_symbol = '[➜](bold {{TEMPLATE_VAR_COLOR_5}})' # The 'success_symbol' s
 # and use the os module below
 [username]
 show_always = true
-style_user = "bg:{{TEMPLATE_VAR_COLOR_1}} dimmed"
+style_user = "bg:{{TEMPLATE_VAR_COLOR_1}} fg:{{TEMPLATE_VAR_TEXT_COLOR_1}}"
 #format = '[: ]($style)'
-format = '[ $user]($style)'
+format = '[ $user ]($style)'
 disabled = false
 
 # An alternative to the username module which displays a symbol that
@@ -100,7 +121,7 @@ disabled = true # Disabled by default
 "Macos" = " "
 
 [directory]
-style = "bg:{{TEMPLATE_VAR_COLOR_2}} fg:black"
+style = "bg:{{TEMPLATE_VAR_COLOR_2}} fg:{{TEMPLATE_VAR_TEXT_COLOR_2}}"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -120,28 +141,28 @@ truncation_symbol = "…/"
 
 [c]
 symbol = " "
-style = "bg:{{TEMPLATE_VAR_COLOR_4}}"
+style = "bg:{{TEMPLATE_VAR_COLOR_4}} fg:{{TEMPLATE_VAR_TEXT_COLOR_4}}"
 format = '[ $symbol ($version) ]($style)'
 
 [docker_context]
 symbol = " "
-style = "bg:#06969A dimmed"
+style = "bg:#06969A"
 format = '[ $symbol $context ]($style)[ $path]($style)'
 disabled = true
 
 [elixir]
 symbol = " "
-style = "bg:{{TEMPLATE_VAR_COLOR_4}}"
+style = "bg:{{TEMPLATE_VAR_COLOR_4}} fg:{{TEMPLATE_VAR_TEXT_COLOR_4}}"
 format = '[ $symbol ($version) ]($style)'
 
 [elm]
 symbol = " "
-style = "bg:{{TEMPLATE_VAR_COLOR_4}}"
+style = "bg:{{TEMPLATE_VAR_COLOR_4}} fg:{{TEMPLATE_VAR_TEXT_COLOR_4}}"
 format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:{{TEMPLATE_VAR_COLOR_3}} dimmed"
+style = "bg:{{TEMPLATE_VAR_COLOR_3}} fg:{{TEMPLATE_VAR_TEXT_COLOR_3}}"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
@@ -150,52 +171,52 @@ format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
 symbol = " "
-style = "bg:{{TEMPLATE_VAR_COLOR_4}}"
+style = "bg:{{TEMPLATE_VAR_COLOR_4}} fg:{{TEMPLATE_VAR_TEXT_COLOR_4}}"
 format = '[ $symbol ($version) ]($style)'
 
 [gradle]
-style = "bg:{{TEMPLATE_VAR_COLOR_4}}"
+style = "bg:{{TEMPLATE_VAR_COLOR_4}} fg:{{TEMPLATE_VAR_TEXT_COLOR_4}}"
 format = '[ $symbol ($version) ]($style)'
 
 [haskell]
 symbol = " "
-style = "bg:{{TEMPLATE_VAR_COLOR_4}}"
+style = "bg:{{TEMPLATE_VAR_COLOR_4}} fg:{{TEMPLATE_VAR_TEXT_COLOR_4}}"
 format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = " "
-style = "bg:{{TEMPLATE_VAR_COLOR_4}}"
+style = "bg:{{TEMPLATE_VAR_COLOR_4}} fg:{{TEMPLATE_VAR_TEXT_COLOR_4}}"
 format = '[ $symbol ($version) ]($style)'
 
 [julia]
 symbol = " "
-style = "bg:{{TEMPLATE_VAR_COLOR_4}}"
+style = "bg:{{TEMPLATE_VAR_COLOR_4}} fg:{{TEMPLATE_VAR_TEXT_COLOR_4}}"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:{{TEMPLATE_VAR_COLOR_4}} dimmed"
+style = "bg:{{TEMPLATE_VAR_COLOR_4}} fg:{{TEMPLATE_VAR_TEXT_COLOR_4}}"
 format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = "󰆥 "
-style = "bg:{{TEMPLATE_VAR_COLOR_4}}"
+style = "bg:{{TEMPLATE_VAR_COLOR_4}} fg:{{TEMPLATE_VAR_TEXT_COLOR_4}}"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:{{TEMPLATE_VAR_COLOR_4}}"
+style = "bg:{{TEMPLATE_VAR_COLOR_4}} fg:{{TEMPLATE_VAR_TEXT_COLOR_4}}"
 format = '[ $symbol ($version) ]($style)'
 
 [scala]
 symbol = " "
-style = "bg:{{TEMPLATE_VAR_COLOR_4}}"
+style = "bg:{{TEMPLATE_VAR_COLOR_4}} fg:{{TEMPLATE_VAR_TEXT_COLOR_4}}"
 format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:{{TEMPLATE_VAR_COLOR_5}}"
+style = "bg:{{TEMPLATE_VAR_COLOR_5}} fg:{{TEMPLATE_VAR_TEXT_COLOR_5}}"
 format = '[  $time ]($style)'
 
 ```
